@@ -1,0 +1,41 @@
+module DbModel
+  class DbObject
+    attr_accessor :id, :name
+    attr_reader :comments, :custom_properties, :errors
+    
+    def initialize properties = nil
+      @errors = {}
+      @custom_properties = {}
+      @comments = []
+  
+      properties.each do |key, value|
+        if key.is_a?(Symbol)
+          if self.respond_to?(key)
+            eval("self.#{key} = value")  # defined properties
+          else
+            @custom_properties[key] = value # undefined properties
+          end
+        end # ignores non-symbol key values
+      end if properties.is_a? Hash
+    end
+    
+    ## 
+    # true if object is valid
+    def valid?
+      if block_given?
+        @errors = {}
+        yield
+      end
+  
+      @errors[:id] = "'id' is missing" if @id.nil?
+      @errors[:name] = "'name' is missing" if @name.nil?
+      
+      is_valid
+    end
+    
+    private
+    def is_valid
+      @errors.empty?
+    end
+  end
+end
