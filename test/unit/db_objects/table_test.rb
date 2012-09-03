@@ -14,7 +14,7 @@ class TableTest < MiniTest::Unit::TestCase
   end
   
   def test_initialize_table_with_custom_name
-    table = DbModel::Table.new :name => 'custom_name'
+    table = Nirgal::Table.new :name => 'custom_name'
     
     assert_equal 'custom_name', table.name
   end
@@ -24,7 +24,7 @@ class TableTest < MiniTest::Unit::TestCase
 
   def test_columns_is_readonly 
     assert_raises NoMethodError do
-      @table.columns = DbModel::Columns.new
+      @table.columns = Nirgal::Columns.new
     end
   end
   
@@ -38,11 +38,11 @@ class TableTest < MiniTest::Unit::TestCase
   end
   
   def test_columns_will_not_accept_other_object_type
-    assert_raises DbModel::InvalidClassError do
-      @table.columns[:test] = DbModel::Table.new
+    assert_raises Nirgal::InvalidClassError do
+      @table.columns[:test] = Nirgal::Table.new
     end
 
-    assert_raises DbModel::InvalidClassError do
+    assert_raises Nirgal::InvalidClassError do
       @table.columns[:test] = "test"
     end
   end
@@ -52,7 +52,7 @@ class TableTest < MiniTest::Unit::TestCase
 
   def test_referenced_by_foreign_keys_is_readonly
     assert_raises NoMethodError do
-      @table.referenced_by_foreign_keys = DbModel::ForeignKeys.new
+      @table.referenced_by_foreign_keys = Nirgal::ForeignKeys.new
     end
   end
   
@@ -66,11 +66,11 @@ class TableTest < MiniTest::Unit::TestCase
   end
 
   def test_reference_by_foreign_keys_will_not_accept_other_object_type
-    assert_raises DbModel::InvalidClassError do
-      @table.referenced_by_foreign_keys[:test] = DbModel::Table.new
+    assert_raises Nirgal::InvalidClassError do
+      @table.referenced_by_foreign_keys[:test] = Nirgal::Table.new
     end
 
-    assert_raises DbModel::InvalidClassError do
+    assert_raises Nirgal::InvalidClassError do
       @table.referenced_by_foreign_keys[:test] = "test"
     end
   end
@@ -80,7 +80,7 @@ class TableTest < MiniTest::Unit::TestCase
 
   def test_foreign_keys_is_readonly
     assert_raises NoMethodError do
-      @table.foreign_keys = DbModel::ForeignKeys.new
+      @table.foreign_keys = Nirgal::ForeignKeys.new
     end
   end
   
@@ -94,11 +94,11 @@ class TableTest < MiniTest::Unit::TestCase
   end
 
   def test_foreign_keys_will_not_accept_other_object_type
-    assert_raises DbModel::InvalidClassError do
-      @table.foreign_keys[:test] = DbModel::Table.new
+    assert_raises Nirgal::InvalidClassError do
+      @table.foreign_keys[:test] = Nirgal::Table.new
     end
 
-    assert_raises DbModel::InvalidClassError do
+    assert_raises Nirgal::InvalidClassError do
       @table.foreign_keys[:test] = "test"
     end
   end
@@ -108,7 +108,7 @@ class TableTest < MiniTest::Unit::TestCase
 
   def test_indexes_is_readonly
     assert_raises NoMethodError do
-      @table.indexes = DbModel::Indexes.new
+      @table.indexes = Nirgal::Indexes.new
     end
   end
   
@@ -122,11 +122,11 @@ class TableTest < MiniTest::Unit::TestCase
   end
 
   def test_indexes_will_not_accept_other_object_type
-    assert_raises DbModel::InvalidClassError do
-      @table.indexes[:test] = DbModel::Table.new
+    assert_raises Nirgal::InvalidClassError do
+      @table.indexes[:test] = Nirgal::Table.new
     end
 
-    assert_raises DbModel::InvalidClassError do
+    assert_raises Nirgal::InvalidClassError do
       @table.indexes[:test] = "test"
     end
   end

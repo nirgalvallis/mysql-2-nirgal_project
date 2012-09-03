@@ -1,4 +1,4 @@
-module DbModel
+module Nirgal
   class Columns < DbContainer
     def initialize
       super Column

@@ -1,4 +1,4 @@
-module DbModel
+module Nirgal
   class ForeignKeys < DbContainer
     def initialize
       super ForeignKey

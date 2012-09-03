@@ -1,4 +1,4 @@
-module DbModel
+module Nirgal
   class ForeignKey < DbObject
     attr_accessor :mandatory, :many, 
       :referenced_table, :owner_table,

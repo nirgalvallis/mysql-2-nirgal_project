@@ -1,4 +1,4 @@
-module DbModel
+module Nirgal
   class Table < DbObject
     attr_reader :columns, :foreign_keys, :referenced_by_foreign_keys, :indexes
     

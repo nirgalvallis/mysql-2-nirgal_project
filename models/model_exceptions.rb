@@ -1,3 +1,3 @@
-module DbModel
+module Nirgal
   class InvalidClassError < Exception; end
 end

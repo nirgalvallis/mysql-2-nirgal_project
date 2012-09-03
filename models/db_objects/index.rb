@@ -1,4 +1,4 @@
-module DbModel
+module Nirgal
   class Index < DbObject
     attr_accessor :type, :is_unique, :is_primary,
       :owner_table

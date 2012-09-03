@@ -10,7 +10,7 @@ class ColumnTest < MiniTest::Unit::TestCase
   end
   
   def test_column_without_table_is_invalid
-    column = DbModel::Column.new :name => 'test'
+    column = Nirgal::Column.new :name => 'test'
     assert_nil column.table
     assert !column.valid?
     refute_nil column.errors[:table_is_present]
@@ -21,7 +21,7 @@ class ColumnTest < MiniTest::Unit::TestCase
 
   def test_indexes_is_readonly
     assert_raises NoMethodError do
-      @column.indexes = DbModel::Indexes.new
+      @column.indexes = Nirgal::Indexes.new
     end
   end
   
@@ -35,11 +35,11 @@ class ColumnTest < MiniTest::Unit::TestCase
   end
 
   def test_indexes_will_not_accept_other_object_type
-    assert_raises DbModel::InvalidClassError do
-      @column.indexes[:test] = DbModel::Table.new
+    assert_raises Nirgal::InvalidClassError do
+      @column.indexes[:test] = Nirgal::Table.new
     end
 
-    assert_raises DbModel::InvalidClassError do
+    assert_raises Nirgal::InvalidClassError do
       @column.indexes[:test] = "test"
     end
   end  

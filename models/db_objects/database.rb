@@ -1,4 +1,4 @@
-module DbModel
+module Nirgal
   class Database < DbObject
     attr_reader :tables
     

@@ -1,4 +1,4 @@
-module DbModel
+module Nirgal
   class Tables < DbContainer
     def initialize
       super Table

@@ -1,4 +1,4 @@
-module DbModel
+module Nirgal
   class Column < DbObject
       attr_accessor :type, :auto_increment, :default_value, 
         :is_not_null, :length, :precision, :scale,  

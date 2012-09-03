@@ -14,7 +14,7 @@ class DatabaseTest < MiniTest::Unit::TestCase
   end
   
   def test_initialize_database_with_custom_name
-    database = DbModel::Database.new :name => 'custom name'
+    database = Nirgal::Database.new :name => 'custom name'
     
     assert_equal database.name, 'custom name'
   end
@@ -24,7 +24,7 @@ class DatabaseTest < MiniTest::Unit::TestCase
 
   def test_tables_is_readonly 
     assert_raises NoMethodError do
-      @database.tables = DbModel::Tables.new
+      @database.tables = Nirgal::Tables.new
     end
   end
   
@@ -38,11 +38,11 @@ class DatabaseTest < MiniTest::Unit::TestCase
   end
   
   def test_tables_will_not_accept_other_object_type
-    assert_raises DbModel::InvalidClassError do
-      @database.tables[:test] = DbModel::Column.new
+    assert_raises Nirgal::InvalidClassError do
+      @database.tables[:test] = Nirgal::Column.new
     end
 
-    assert_raises DbModel::InvalidClassError do
+    assert_raises Nirgal::InvalidClassError do
       @database.tables[:test] = "test"
     end
   end
@@ -51,7 +51,7 @@ class DatabaseTest < MiniTest::Unit::TestCase
   # test custom_properties
 
   def test_assert_custom_properties_are_added_at_initialization
-    database = DbModel::Database.new :custom => 'custom value'
+    database = Nirgal::Database.new :custom => 'custom value'
     
     assert_equal({:custom => 'custom value'}, database.custom_properties)
   end

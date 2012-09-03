@@ -28,14 +28,14 @@ class DbObjectTest < MiniTest::Unit::TestCase
   end
   
   def test_invalid_without_id
-    db_object = DbModel::DbObject.new :name => 'test'
+    db_object = Nirgal::DbObject.new :name => 'test'
     
     assert !db_object.valid?    
     refute_nil db_object.errors[:id]
   end
   
   def test_invalid_without_name
-    db_object = DbModel::DbObject.new :id => 1
+    db_object = Nirgal::DbObject.new :id => 1
     
     assert !db_object.valid?
     refute_nil db_object.errors[:name]
@@ -43,7 +43,7 @@ class DbObjectTest < MiniTest::Unit::TestCase
   
   def test_initialize_with_comments_raises_no_method_error
     assert_raises NoMethodError do
-      db_object = DbModel::DbObject.new :name => 'test', :comments => 'commentaire'
+      db_object = Nirgal::DbObject.new :name => 'test', :comments => 'commentaire'
     end
   end
   
@@ -56,7 +56,7 @@ class DbObjectTest < MiniTest::Unit::TestCase
   end
   
   def test_other_properties_go_to_custom_properties
-    db_object = DbModel::DbObject.new :id => 1, :name => 'test', :custom1 => 'custom1', :custom2 => 'custom2'
+    db_object = Nirgal::DbObject.new :id => 1, :name => 'test', :custom1 => 'custom1', :custom2 => 'custom2'
     
     assert db_object.valid?
     assert_equal({ :custom1 => 'custom1', :custom2 => 'custom2' }, db_object.custom_properties) 

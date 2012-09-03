@@ -1,4 +1,4 @@
-module DbModel
+module Nirgal
   class DbObject
     attr_accessor :id, :name
     attr_reader :comments, :custom_properties, :errors
