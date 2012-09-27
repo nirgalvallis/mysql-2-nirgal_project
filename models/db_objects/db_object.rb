@@ -1,19 +1,26 @@
 module Nirgal
   class DbObject
-    attr_accessor :id, :name
-    attr_reader :comments, :custom_properties, :errors
+    include DbObjectExtender
+    
+#    attr_accessor :id, :name
+#    attr_reader :comments, :custom_properties, :errors
+    property :id, :Fixnum
+    property :name, :String
+    property :comments, :Array, :readonly => true
+    property :custom_properties, :Hash, :readonly => true
+    property :errors, :Hash, :readonly => true
     
     def initialize properties = nil
-      @errors = {}
-      @custom_properties = {}
-      @comments = []
+#      @errors = {}
+#      @custom_properties = {}
+#      @comments = []
   
       properties.each do |key, value|
         if key.is_a?(Symbol)
           if self.respond_to?(key)
             eval("self.#{key} = value")  # defined properties
           else
-            @custom_properties[key] = value # undefined properties
+            custom_properties[key] = value # undefined properties
           end
         end # ignores non-symbol key values
       end if properties.is_a? Hash
@@ -23,19 +30,23 @@ module Nirgal
     # true if object is valid
     def valid?
       if block_given?
-        @errors = {}
+        errors = {}
         yield
       end
   
-      @errors[:id] = "'id' is missing" if @id.nil?
-      @errors[:name] = "'name' is missing" if @name.nil?
+      errors[:id] = "'id' is missing" if id.nil?
+      errors[:name] = "'name' is missing" if name.nil?
       
       is_valid
     end
     
+    
     private
     def is_valid
-      @errors.empty?
+      errors.empty?
     end
+    
+    
   end
 end
+
