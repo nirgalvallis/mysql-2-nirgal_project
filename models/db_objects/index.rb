@@ -4,11 +4,11 @@ module Nirgal
       # :owner_table
     # attr_reader :referenced_columns
     
-    property :type, :String
-    property :is_unique, :FalseClass
-    property :is_primary, :FalseClass
-    property :owner_table, :Table
-    property :referenced_columns, :Columns
+    property :type, String
+    property :is_unique, FalseClass
+    property :is_primary, FalseClass
+    property :owner_table, Table
+    property :referenced_columns, Columns
 #       
     # def initialize properties = nil
 # #      @type = nil

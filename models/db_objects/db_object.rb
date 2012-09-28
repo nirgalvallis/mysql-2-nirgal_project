@@ -4,11 +4,11 @@ module Nirgal
     
 #    attr_accessor :id, :name
 #    attr_reader :comments, :custom_properties, :errors
-    property :id, :Fixnum
-    property :name, :String
-    property :comments, :Array, :readonly => true
-    property :custom_properties, :Hash, :readonly => true
-    property :errors, :Hash, :readonly => true
+    property :id, Fixnum
+    property :name, String
+    property :comments, Array, :readonly => true
+    property :custom_properties, Hash, :readonly => true
+    property :errors, Hash, :readonly => true
     
     def initialize properties = nil
 #      @errors = {}
@@ -26,16 +26,28 @@ module Nirgal
       end if properties.is_a? Hash
     end
     
+    def errors
+      @errors ||= {}
+    end
+    
+    def custom_properties
+      @custom_properties ||= {}
+    end
+    
+    def comments
+      @comments ||= []
+    end
+    
     ## 
     # true if object is valid
     def valid?
       if block_given?
-        errors = {}
+        errors = {} # reset error messages
         yield
       end
   
-      errors[:id] = "'id' is missing" if id.nil?
-      errors[:name] = "'name' is missing" if name.nil?
+      self.errors[:id] = "'id' is missing" if id.nil?
+      self.errors[:name] = "'name' is missing" if name.nil?
       
       is_valid
     end

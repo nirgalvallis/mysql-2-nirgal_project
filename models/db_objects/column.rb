@@ -8,16 +8,16 @@ module Nirgal
         # :table
       # attr_reader :indexes
       
-      property :type, :String
-      property :auto_increment, :FalseClass
-      property :default_values, :Fixnum
-      property :is_not_null, :TrueClass
-      property :length, :Fixnum
-      property :precision, :Fixnum
-      property :scale, :Fixnum
-      property :is_foreign_key, :FalseClass
-      property :table, :Table
-      property :indexes, :Indexes, :readonly => true
+      property :type, String
+      property :auto_increment, FalseClass
+      property :default_values, Fixnum
+      property :is_not_null, TrueClass
+      property :length, Fixnum
+      property :precision, Fixnum
+      property :scale, Fixnum
+      property :is_foreign_key, FalseClass
+      property :table, Table
+      property :indexes, Indexes, :readonly => true
       
     
 #    def initialize properties = nil

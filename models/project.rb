@@ -2,7 +2,7 @@ require 'yaml'
 
 module Nirgal
   class Project < DbObject
-    property :databases, :Databases, :readonly => true
+    property :databases, Databases, :readonly => true
 #    include YAML
 #    attr_reader :tables
     

@@ -1,12 +1,12 @@
 module Nirgal
   class ForeignKey < DbObject
-    property :mandatory, :FalseClass
-    property :many, :FalseClass
-    property :referenced_table, :Table
-    property :owner_table, :Table
-    property :reversed_name, :String
-    property :referenced_columns, :Columns
-    property :owner_columns, :Columns
+    property :mandatory, FalseClass
+    property :many, FalseClass
+    property :referenced_table, Table
+    property :owner_table, Table
+    property :reversed_name, String
+    property :referenced_columns, Columns
+    property :owner_columns, Columns
 
     # attr_accessor :mandatory, :many, 
       # :referenced_table, :owner_table,

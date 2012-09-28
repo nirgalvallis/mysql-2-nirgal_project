@@ -5,7 +5,8 @@ FactoryGirl.define do
     sequence(:name) {|n| "base_object-#{n}"}
   end
 
-  factory :database, class: Nirgal::Database do
+  factory :database, class: Nirgal::Database, parent: :db_object do
+    sequence(:name) {|n| "db-#{n}"}
   end
   
   factory :table, class: Nirgal::Table, parent: :db_object do

@@ -1,14 +1,14 @@
 module Nirgal
   class Database < DbObject
-    property :tables, :Tables, :readonly => true
+    property :tables, Tables, :readonly => true
     # attr_reader :tables
 #     
-    def initialize properties = nil
-      id = 1
-      name = 'database 1'  
-
-      super
-    end       
+    # def initialize properties = nil
+      # id = 1
+      # name = 'database 1'  
+# 
+      # super
+    # end       
       # @tables = Tables.new
 #   
       # super properties

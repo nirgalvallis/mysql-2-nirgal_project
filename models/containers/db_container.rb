@@ -2,46 +2,46 @@ module Nirgal
   class DbContainer < Hash
   
     ## Internal class to define what kind of class objects can be added to the container
-    class DbArray < Array
-      
-      # initializes a new array with a list of accepted class in the container
-      # an exception will be raised if a classe is not inherited from Nirgal
-      def initialize classes
-        classes = [classes] unless classes.is_a? Array
-        validate_classes(classes)
-        
-        super classes
-      end
-    
-      # overrides << operator to ensure that the received object is a Nirgal inherited class before insertion
-      def <<(klass)
-        validate_class klass
-        
-        super klass
-      end
-      
-      private
-      # returns true if the class is a derived class from Nirgal
-      def accept_class? klass
-        return false if klass.nil?
-        
-        klass.class == Class && (klass == DbObject || accept_class?(klass.superclass))      
-      end
-      
-      # validates that each class object in the array are derived from Nirgal
-      # raises an exception if an invalid class is received
-      def validate_classes classes
-        classes.all? { |klass| validate_class klass }      
-      end
-      
-      # validates that the received class is derived from Nirgal
-      # raises an exception if an invalid class is received
-      def validate_class klass
-        raise InvalidClassError.new "constainer only accepts 'Nirgal' derived classes" unless accept_class? klass      
-        
-        true
-      end
-    end
+    # class DbArray < Array
+#       
+      # # initializes a new array with a list of accepted class in the container
+      # # an exception will be raised if a classe is not inherited from Nirgal
+      # def initialize classes
+        # classes = [classes] unless classes.is_a? Array
+        # validate_classes(classes)
+#         
+        # super classes
+      # end
+#     
+      # # overrides << operator to ensure that the received object is a Nirgal inherited class before insertion
+      # def <<(klass)
+        # validate_class klass
+#         
+        # super klass
+      # end
+#       
+      # private
+      # # returns true if the class is a derived class from Nirgal
+      # def accept_class? klass
+        # return false if klass.nil?
+#         
+        # klass.class == Class && (klass == DbObject || accept_class?(klass.superclass))      
+      # end
+#       
+      # # validates that each class object in the array are derived from Nirgal
+      # # raises an exception if an invalid class is received
+      # def validate_classes classes
+        # classes.all? { |klass| validate_class klass }      
+      # end
+#       
+      # # validates that the received class is derived from Nirgal
+      # # raises an exception if an invalid class is received
+      # def validate_class klass
+        # raise InvalidClassError.new "constainer only accepts 'Nirgal' derived classes" unless accept_class? klass      
+#         
+        # true
+      # end
+    # end
   
     attr :accepted_classes
     
@@ -60,6 +60,10 @@ module Nirgal
       end
       
       super key, elem    
+    end
+    
+    def <<(elem)
+      self[elem.name.to_sym] = elem
     end
     
     # adds a new accepted class to the list

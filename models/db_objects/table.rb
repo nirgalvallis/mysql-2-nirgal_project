@@ -3,10 +3,10 @@
 module Nirgal
   class Table < DbObject
 #      attr_reader :columns, :foreign_keys, :referenced_by_foreign_keys, :indexes
-    property :columns, :Columns
-    property :foreign_keys, :ForeignKeys
-    property :referenced_by_foreign_keys, :ForeignKeys
-    property :indexes, :Indexes
+    property :columns, Columns
+    property :foreign_keys, ForeignKeys
+    property :referenced_by_foreign_keys, ForeignKeys
+    property :indexes, Indexes
     
 #    def initialize properties = nil
 #      @columns = Columns.new 
